@@ -3,125 +3,571 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name | Personal Homepage</title>
+  <title>Your Name | Computational Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f3f6f9;
+      --paper: #ffffff;
+      --ink: #13212e;
+      --muted: #5d6c79;
+      --line: #d8e0e8;
+      --primary: #0b5fa5;
+      --accent: #118a7e;
+      --soft: #eaf4fb;
+      --soft-2: #edf7f5;
+      --shadow: 0 18px 45px rgba(16, 38, 61, 0.10);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background: #f7f7f7;
-      color: #222;
-      line-height: 1.6;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(17, 138, 126, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(11, 95, 165, 0.12), transparent 30%),
+        linear-gradient(180deg, #f7fafc 0%, var(--bg) 100%);
+      line-height: 1.65;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: white;
-      padding: 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border-radius: 12px;
-    }
-    h1, h2 {
-      color: #1a3c6e;
-      margin-bottom: 10px;
-    }
+
     a {
-      color: #0056b3;
+      color: var(--primary);
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
-    .top {
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 42px 0 24px;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,255,255,0.88));
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--shadow);
+      border-radius: calc(var(--radius) + 6px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 0;
+    }
+
+    .hero-main {
+      padding: 54px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--primary);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: "IBM Plex Serif", serif;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 28px 0 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-side {
+      background:
+        linear-gradient(180deg, rgba(234, 244, 251, 0.85), rgba(237, 247, 245, 0.95)),
+        linear-gradient(135deg, #d8ebf9, #eaf7f0);
+      padding: 54px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 6px solid rgba(255,255,255,0.8);
+      box-shadow: 0 14px 30px rgba(20, 48, 69, 0.15);
+      margin-bottom: 24px;
+      background: #d7dde4;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 18px;
+      padding: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .section {
+      padding: 22px 0;
+    }
+
+    .section-title {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.55rem;
+    }
+
+    .section-title .line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, var(--line), transparent);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid rgba(215, 225, 234, 0.95);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 28px rgba(16, 38, 61, 0.05);
+      padding: 26px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .highlights {
+      display: flex;
       flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
     }
-    .photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #ddd;
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f2f7fb;
+      border: 1px solid #d9e6f1;
+      font-size: 0.92rem;
+      color: #23435f;
     }
-    .section {
-      margin-top: 32px;
+
+    .timeline-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #ebf0f5;
     }
-    ul {
-      padding-left: 20px;
+
+    .timeline-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
     }
-    .footer {
-      margin-top: 40px;
+
+    .timeline-item strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .timeline-item span {
+      color: var(--muted);
       font-size: 0.95rem;
-      color: #666;
-      border-top: 1px solid #ddd;
-      padding-top: 16px;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .pub {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #fff, #fbfdff);
+    }
+
+    .pub strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .pub span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    footer {
+      padding: 28px 0 48px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .card-grid,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .hero-side {
+        padding: 32px 24px;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        width: 140px;
+        height: 140px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top">
-      <img src="profile.jpg" alt="Your photo" class="photo">
-      <div>
-        <h1>Your Name</h1>
-        <p>PhD Scholar / Researcher / Professor</p>
-        <p>Department of ...<br>University of ...</p>
-        <p>
-          Email: <a href="mailto:yourname@email.com">yourname@email.com</a><br>
-          GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a><br>
-          Google Scholar: <a href="#">Your Scholar Profile</a>
-        </p>
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="hero-grid">
+          <div class="hero-main">
+            <div class="badge">Computational Scientist</div>
+            <h1>Your Name</h1>
+            <p class="subtitle">
+              I develop high-fidelity numerical methods for partial differential equations,
+              scientific computing, and simulation-driven discovery, with a focus on
+              convection-diffusion systems, discontinuous Galerkin methods, and robust algorithms
+              for challenging multiscale problems.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="mailto:yourname@email.com">Email Me</a>
+              <a class="btn secondary" href="#research">Research</a>
+              <a class="btn secondary" href="cv.pdf" target="_blank">Download CV</a>
+            </div>
+
+            <div class="mini-stats">
+              <div class="stat">
+                <strong>DG Methods</strong>
+                <span>High-order schemes for transport and diffusion</span>
+              </div>
+              <div class="stat">
+                <strong>Scientific Computing</strong>
+                <span>Stable, accurate, and scalable numerical simulation</span>
+              </div>
+              <div class="stat">
+                <strong>CFD & PDEs</strong>
+                <span>Modeling and analysis of complex flow problems</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <img src="profile.jpg" alt="Portrait of Your Name" class="profile-photo">
+            <div class="panel">
+              <h3>Current Focus</h3>
+              <p>
+                Numerical analysis, finite element and DG methods, IMEX time integration,
+                convection-dominated flow, and computational techniques for challenging PDE systems.
+              </p>
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
+  </header>
 
-    <div class="section">
-      <h2>About Me</h2>
-      <p>
-        Welcome to my homepage. I am working in numerical methods for partial
-        differential equations, computational fluid dynamics, and discontinuous
-        Galerkin methods. My research interests include convection-diffusion
-        problems, high-order schemes, and scientific computing.
-      </p>
-    </div>
+  <main class="wrap">
+    <section class="section" id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <div class="line"></div>
+      </div>
+      <div class="card">
+        <p>
+          I am a computational scientist working at the intersection of applied mathematics,
+          numerical methods, and scientific computing. My research centers on building reliable
+          and efficient algorithms for partial differential equations arising in fluid mechanics,
+          transport phenomena, and continuum models.
+        </p>
+        <p class="muted">
+          I am especially interested in high-order discretization, stability analysis, convection-diffusion
+          problems, and designing methods that are both mathematically sound and computationally practical.
+        </p>
+        <div class="highlights">
+          <span class="chip">Discontinuous Galerkin</span>
+          <span class="chip">Convection-Diffusion</span>
+          <span class="chip">Finite Element Analysis</span>
+          <span class="chip">IMEX Time Stepping</span>
+          <span class="chip">Scientific Simulation</span>
+          <span class="chip">Computational Fluid Dynamics</span>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Research Interests</h2>
-      <ul>
-        <li>Discontinuous Galerkin methods</li>
-        <li>Finite element and finite volume methods</li>
-        <li>Convection-diffusion equations</li>
-        <li>Computational fluid dynamics</li>
-        <li>Scientific computing</li>
-      </ul>
-    </div>
+    <section class="section" id="research">
+      <div class="section-title">
+        <h2>Research</h2>
+        <div class="line"></div>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Numerical Methods for PDEs</h3>
+          <p class="muted">
+            Development and analysis of stable, accurate, and efficient discretizations for
+            convection-dominated and diffusion-driven systems.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Discontinuous Galerkin and FEM</h3>
+          <p class="muted">
+            High-order formulations for transport, advection-diffusion, and flow problems on
+            structured and unstructured meshes.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Time Integration</h3>
+          <p class="muted">
+            Explicit, implicit, and IMEX schemes for stiff and multiscale systems with attention
+            to CFL constraints, stability, and computational cost.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Scientific Computing</h3>
+          <p class="muted">
+            Reproducible computational workflows, simulation-based investigation, and performance-aware
+            implementations for modern numerical science.
+          </p>
+        </article>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Publications</h2>
-      <ul>
-        <li>Author Name, Coauthor Name, "Title of paper", Journal, Year.</li>
-        <li>Author Name, Coauthor Name, "Another paper title", Journal, Year.</li>
-      </ul>
-    </div>
+    <section class="section" id="experience">
+      <div class="section-title">
+        <h2>Academic Journey</h2>
+        <div class="line"></div>
+      </div>
+      <div class="card">
+        <div class="timeline-item">
+          <strong>Current Position / Degree</strong>
+          <span>Institution Name | Year - Present</span>
+        </div>
+        <div class="timeline-item">
+          <strong>Previous Degree or Research Role</strong>
+          <span>Institution Name | Year - Year</span>
+        </div>
+        <div class="timeline-item">
+          <strong>Earlier Academic Training</strong>
+          <span>Institution Name | Year - Year</span>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Teaching / Projects</h2>
-      <ul>
-        <li>Course name or project 1</li>
-        <li>Course name or project 2</li>
-      </ul>
-    </div>
+    <section class="section" id="publications">
+      <div class="section-title">
+        <h2>Selected Publications</h2>
+        <div class="line"></div>
+      </div>
+      <div class="pub-list">
+        <div class="pub">
+          <strong>Title of Your Paper</strong>
+          <span>Your Name, Coauthor Name, Journal Name, Year</span>
+        </div>
+        <div class="pub">
+          <strong>Another Publication Title</strong>
+          <span>Your Name, Coauthor Name, Journal Name, Year</span>
+        </div>
+        <div class="pub">
+          <strong>Working Paper or Preprint Title</strong>
+          <span>Your Name, Coauthor Name, Preprint / Submitted, Year</span>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>CV</h2>
-      <p>
-        <a href="cv.pdf" target="_blank">Download my CV</a>
-      </p>
-    </div>
+    <section class="section" id="projects">
+      <div class="section-title">
+        <h2>Current Themes</h2>
+        <div class="line"></div>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Convection-Dominated Flows</h3>
+          <p class="muted">
+            Stabilized schemes, flux strategies, and high-resolution methods for transport-dominated regimes.
+          </p>
+        </div>
+        <div class="card">
+          <h3>High-Order Simulation</h3>
+          <p class="muted">
+            Accurate approximation of solution structures using DG and finite element formulations.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Analysis and Verification</h3>
+          <p class="muted">
+            Convergence studies, benchmark design, and careful validation of numerical behavior.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Computational Workflows</h3>
+          <p class="muted">
+            Clean implementations for research computing, reproducible experiments, and paper-ready results.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <div class="footer">
-      <p>Last updated: April 2026</p>
-    </div>
-  </div>
+    <section class="section" id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <div class="line"></div>
+      </div>
+      <div class="contact">
+        <div class="contact-box">
+          <h3>Professional Links</h3>
+          <p><a href="https://github.com/yourusername">GitHub</a></p>
+          <p><a href="#">Google Scholar</a></p>
+          <p><a href="#">ORCID</a></p>
+          <p><a href="#">LinkedIn</a></p>
+        </div>
+        <div class="contact-box">
+          <h3>Get In Touch</h3>
+          <p>Email: <a href="mailto:yourname@email.com">yourname@email.com</a></p>
+          <p>Affiliation: Department / Lab / Institution</p>
+          <p>Location: Your City, Country</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>Last updated: April 2026</p>
+  </footer>
 </body>
 </html>
